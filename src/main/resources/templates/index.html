@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>栀子花开伴你我</title>
+    <!--主页基础css样式-->
+    <link rel="stylesheet" href="/lib/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.css">
+    <!--主页css样式-->
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/message-body.css">
+
+    <style>
+        #atricleText{
+            cursor: pointer;
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+            -webkit-transition:all 1s ease;
+            transition:all 1s ease;
+        }
+
+        #atricleText:hover{
+            transform: translateY(-3px);
+            -webkit-transform: translateY(-3px);
+            -moz-transform:translateY(-3px);
+            box-shadow: 0 26px 40px -24px #00aaaa;
+            -webkit-box-shadow: 0 26px 40px -24px #00aaaa;
+            -moz-box-shadow:0 26px 40px -24px #00aaaa;
+
+            /*transition: width 2s, height 2s, transform 2s;*/
+            /*transform:translate(0, 1px);*/
+            /*box-shadow:0 2px 30px #00aaaa;*/
+        }
+    </style>
+
+</head>
+<body>
+    <div th:replace="common/header :: myHeader"></div>
+
+    <div class="container" id="body-message">
+        <div id="body-message-left">
+            <!--轮播图区域-->
+            <div id="body-message-slideshow" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#body-message-slideshow" data-slide-to="0" class="active"></li>
+                    <li data-target="#body-message-slideshow" data-slide-to="1"></li>
+                    <li data-target="#body-message-slideshow" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/image/测试图1.jpg" class="d-block w-100" alt="图片加载失败">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>First slide label</h5>
+                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/image/测试图2.jpg" class="d-block w-100" alt="图片加载失败">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Second slide label</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/image/测试图3.jpg" class="d-block w-100" alt="图片加载失败">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Third slide label</h5>
+                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#body-message-slideshow" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <a class="carousel-control-next" href="#body-message-slideshow" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+            <!--文章类表区域-->
+            <div id="body-message-text">
+                <div class="card h-100 w-100" id="message-text-card">
+                    <div class="card-header bg-info text-white">
+                        <span id="message-text-card-header-1">博客最新动态</span>
+                    </div>
+                    <div class="card-body">
+
+                        <div th:replace="common/index-message-body :: messageBody"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="body-message-right">
+            <!--个人介绍区域-->
+            <div id="body-message-my">
+                <span id="body-message-my-1">ABOUT ME</span>
+                <img id="body-message-my-img" src="/image/头像.jpg" alt="图片加载失败！" class="img-thumbnail">
+                <div id="body-message-my-2">
+                    浮生如梦，敬请珍惜！
+                </div>
+                <div id="body-message-my-text">
+                    <span class="body-message-my-text-1">
+                        name：<span class="body-message-my-text-2">罗&nbsp海</span>
+                    </span>
+                    <span class="body-message-my-text-1">
+                        nickName：<span class="body-message-my-text-2">栀&nbsp子</span>
+                    </span>
+                    <span class="body-message-my-text-1">
+                        job：<span class="body-message-my-text-2">java程序猿</span>
+                    </span>
+                    <span class="body-message-my-text-1">
+                        place：<span class="body-message-my-text-2">江西九江</span>
+                    </span>
+                    <span class="body-message-my-text-1">
+                        resume：<span class="body-message-my-text-2">18年的退伍兵，回到社会后通过学习走上了编程之路，希望能通过自己的努力让生活更美好。</span>
+                    </span>
+                    <span class="body-message-my-text-1">
+                        email：<span class="body-message-my-text-3">luohai940628@163.com</span>
+                    </span>
+                    <div id="body-message-my-bottom">
+                        <a id="weixin" href="javascript:void(0)">
+                            <i id="body-message-my-bottom-1" class="fa fa-weixin fa-2x"></i>
+                        </a>
+                        <a id="qqq" href="javascript:void(0)">
+                            <i id="body-message-my-bottom-2" class="fa fa-qq fa-2x"></i>
+                        </a>
+                    </div>
+                    <img id="weixinImg" src="/image/本人微信.jpg" hidden="hidden">
+                    <img id="qqqImg" src="/image/本人qq.png" hidden="hidden">
+                </div>
+            </div>
+
+            <div id="body-message-notice">
+                <div class="card h-100 w-100" id="notice-card">
+                    <div class="card-header bg-info text-white" id="notice-card-header">
+                        <span id="notice-card-header-1">网站公告</span>
+                        <span th:text="${#dates.format(notices.getNoticeDate(),'yyyy-MM-dd HH:mm')}" id="notice-card-header-2"></span>
+                    </div>
+                    <div class="card-body" id="notice-card-body">&nbsp&nbsp&nbsp&nbsp<span th:text="${notices.getNoticeBody()}"></span>
+                    </div>
+                    <div id="notice-footer">
+                        <button class="btn btn-info">查看历史公告</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="body-message-new-text">
+                <div class="card h-100 w-100" id="message-new-card">
+                    <div class="card-header bg-info text-white">
+                        <span id="message-new-card-header-1">阅读排行</span>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="body-message-lable">
+                <div class="card h-100 w-100" id="lable-card">
+                    <div class="card-header bg-info text-white">
+                        <span id="lable-card-header-1">标了个签</span>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div th:replace="common/footer :: myFooter"></div>
+
+    <!--主页基础js-->
+    <script type="text/javascript" src="/lib/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap/bootstrap.js"></script>
+    <!--主页js-->
+    <script type="text/javascript">
+        // 微信和扣扣鼠标移动的二维码展示与隐藏
+        $('#weixin').on('mouseover',function () {
+            $('#weixinImg').removeAttr('hidden','hidden');
+        });
+        $('#weixin').on('mouseout',function () {
+            $('#weixinImg').attr('hidden','hidden');
+        });
+        $('#qqq').on('mouseover',function () {
+            $('#qqqImg').removeAttr('hidden','hidden');
+        });
+        $('#qqq').on('mouseout',function () {
+            $('#qqqImg').attr('hidden','hidden');
+        });
+
+        /**
+         * 获取文章UUID
+         * @param result
+         */
+        function clickTitle(result) {
+
+            let $this = $(result);
+            let $id = $this.attr("data-id");
+
+            $.ajax({
+                url: "/readCompile",
+                data: {
+                    articleUUID: $id
+                },
+                success:function (result) {
+                    // console.log("asdf")
+                    window.location.href="/article?article=" + result;
+                }
+            })
+
+        }
+    </script>
+
+    <script type="text/javascript" src="/js/index.js"></script>
+
+</body>
+</html>

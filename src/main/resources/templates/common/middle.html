@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>跳转页面</title>
+    <!--主页基础css样式-->
+    <link rel="stylesheet" href="/lib/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.css">
+</head>
+<body style="background-color: rgba(230,230,230,0.99)">
+
+    <div class="m-auto" style="width: 55vw;">
+        <div style="margin-top: 200px">
+            <i class="fa fa-check-circle" aria-hidden="true" style="color: rgb(20, 109, 167);font-size: 65px"></i>
+            <span style="color: rgb(20, 109, 167);font-size: 60px;font-family: 黑体;font-weight: bold">恭喜！</span>
+            <span style="color: rgb(20, 109, 167);font-size: 30px;font-family: 微软雅黑;">
+                <span th:text="${title}">账号注册</span>成功,
+                <span id="time" style="margin: 0 10px 0 5px;color: rgb(0, 123, 255)">6</span>秒之后跳转到<span th:text="${targetTitle}">登录页面</span>！
+            </span>
+        </div>
+        <div style="margin-top: 50px;margin-left:560px">
+            <span style="color: rgb(20, 109, 167);font-size: 20px;font-family: 微软雅黑;">
+                点击
+                <a th:href="${urls}" style="margin: 0 5px 0 5px">跳转</a>直接至<span th:text="${targetTitle}">登录页面</span>.
+            </span>
+        </div>
+    </div>
+
+
+
+    <!--主页基础js-->
+    <script type="text/javascript" src="/lib/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap/bootstrap.js"></script>
+
+    <script type="text/javascript" th:inline="javascript">
+        // 获取temleaf传递的跳转地址
+        var urls = [[${urls}]];
+
+        isTime();
+
+        /**
+         * 定时跳转页面方法
+         */
+        function isTime() {
+            var $time = $('#time').html();
+            var t = setTimeout("isTime()",2000);
+
+            if ($time > 1){
+                $time --;
+                $('#time').html($time);
+            }else {
+                clearTimeout(t);
+                window.location.href = urls;
+            }
+
+        }
+
+
+    </script>
+</body>
+</html>

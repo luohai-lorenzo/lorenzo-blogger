@@ -1,0 +1,99 @@
+<!--最新文章内容分页-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="messageBody" style="height: 100%;width: 100%" id="message-paging">
+
+    <div class="mt-2">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <button class="page-link btn" aria-label="Previous" onclick="clickIn()">
+                        <span aria-hidden="true">&laquo;</span>
+                    </button>
+                </li>
+                <li class="page-item" th:each="index:${#numbers.sequence(1,session.pagings.getNumberPages())}">
+                    <button class="page-link btn" th:text="${index}" onclick="clicks(this)"></button>
+                </li>
+                <li class="page-item">
+                    <button class="page-link btn" aria-label="Next" onclick="clickOut()">
+                        <span aria-hidden="true">&raquo;</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="atricleText" class="card mb-4 border-bottom-0 border-right-0 border-top-0"
+         th:each="mbArticle,start : ${session.pagings.getMbArticleList()}" style="border-left: 2px solid #00aaaa">
+        <div class="card-body p-2" style="height: 120px;">
+            <a class="p-0" th:data-id="${mbArticle.getUuid()}" style="font-size: 30px;text-decoration: none;" href="javascript:void(0)" th:text="${mbArticle.getTitle()}" onclick="clickTitle(this)">文章标题</a>
+            <div class="mt-2">
+                <span class="p-0" style="font-size: 20px;font-family: 华文楷体">文章副标题</span>
+                <button type="button" class="btn btn-light" style="float:right" onclick="clickButton()">继续阅读 >></button>
+            </div>
+        </div>
+        <div class="card-footer p-1" style="font-size: 15px;font-family: 华文细黑">
+            <div style="display: inline-block">
+                <i class="fa fa-user-o"></i>&nbsp<span>作者：<span>罗三炮</span></span>&nbsp&nbsp&nbsp
+            </div>
+            <div style="display: inline-block">
+                <i class="fa fa-clock-o"></i>&nbsp<span>发表时间：<span th:text="${#dates.format(mbArticle.getPostedTime(),'yyyy-MM-dd HH:mm')}">1010-01-01 01:01</span></span>&nbsp&nbsp&nbsp&nbsp
+            </div>
+            <div style="display: inline-block">
+                <i class="fa fa-commenting-o"></i>&nbsp<span>评论（<span th:text="${mbArticle.getCommentNumber()}">0</span>）</span>&nbsp&nbsp
+            </div>
+            <div style="display: inline-block">
+                <i class="fa fa-eye"></i>&nbsp<span>浏览量（<span th:text="${mbArticle.getLookNumber()}">0</span>）</span>&nbsp&nbsp&nbsp
+            </div>
+            <div style="display: inline-block">
+                <i class="fa fa-bookmark-o"></i>&nbsp<span>分类：<span >技术</span></span>
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        var number = [[${session.pagings.getNumberPage()}]]
+        var sum = [[${session.pagings.getNumberPages()}]]
+    </script>
+
+    <script type="text/javascript">
+
+        function ajaxs(number) {
+            $.ajax({
+                url: "/paging",
+                data: {
+                    num: number
+                },
+                success:function (result) {
+                    $('#message-paging').html(result);
+                }
+            });
+        }
+
+        function clicks(result) {
+            var $num = $(result).html();
+            ajaxs($num);
+        };
+
+        function clickIn() {
+            var numbers = number - 1;
+            if(numbers < 1){
+                ajaxs(1);
+                return;
+            }
+            ajaxs(numbers);
+        }
+
+        function clickOut() {
+            var numbers = number + 1;
+            if (numbers >= sum){
+                ajaxs(sum);
+                return;
+            }
+            ajaxs(numbers);
+        }
+
+
+
+    </script>
+
+</div>

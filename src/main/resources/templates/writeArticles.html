@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>文章编辑</title>
+
+    <!--主页基础css样式-->
+    <link rel="stylesheet" href="/lib/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/lib/messenger/messenger.css">
+    <link rel="stylesheet" href="/lib/messenger/messenger-theme-air.css">
+    <!--页面css样式-->
+    <link rel="stylesheet" href="/css/writeArticles.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+
+    <style>
+
+        /*这两个css是用来解决wangEditor.js层级太高的问题*/
+        .w-e-menu{
+            z-index: 2 !important;
+        }
+        .w-e-text-container{
+            z-index: 2 !important;
+        }
+
+        #labels{
+            text-decoration: none;
+            color: #95999c;
+        }
+        #labels:hover{
+            color: #2411e5;
+        }
+        #labels1,#labels2,#labels3{
+            padding: 10px 0 10px 15px;
+            font-size: 13px;
+            border: none;
+            outline: none;
+            background-color: #d9e8ef;
+            width: 140px;
+            height: 26px
+        }
+        .labelsModel1,.labelsModel2,.labelsModel3 {
+            background-color: #d9e8ef;
+            color: #270be5;
+            width: 140px;
+            height: 26px;
+        }
+        #labelsModel1-div,#labelsModel2-div,#labelsModel3-div {
+            display: inline-block;
+            width: 120px;
+            height: 26px;
+            font-size: 13px;
+            padding: 0 0 0 15px;
+        }
+        #labelsModel1-a,#labelsModel2-a,#labelsModel3-a {
+            color: #95999c;
+        }
+        #labelsModel1-a:hover {
+            color: rgba(4, 1, 6, 0.97);
+        }
+        #labelsModel2-a:hover {
+            color: rgba(4, 1, 6, 0.97);
+        }
+        #labelsModel3-a:hover {
+            color: rgba(4, 1, 6, 0.97);
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div th:replace="common/header :: myHeader"></div>
+
+    <div id="body-message">
+
+        <div id="title-district" class="row">
+
+            <div class="col-6">
+                <div class="row mt-2">
+                    <div class="col-2" style="text-align: right; ">
+                        <span style="display: inline-block;font-size: 20px">博客标签</span>
+                    </div>
+                    <div class="col-9">
+                        <div style="display: inline-block;">
+                            <input id="labels1" onblur="labelOnb1()" type="hidden"/>
+                            <div class="labelsModel1">
+                                <div id="labelsModel1-div"></div>
+                                <a id="labelsModel1-a" onclick="label1Off()"><i class="fa fa-times"></i></a>
+                            </div>
+                        </div>
+                        <div style="display: inline-block">
+                            <input id="labels2" onblur="labelOnb2()" type="hidden" />
+                            <div class="labelsModel2">
+                                <div id="labelsModel2-div"></div>
+                                <a id="labelsModel2-a" onclick="label2Off()"><i class="fa fa-times"></i></a>
+                            </div>
+                        </div>
+                        <div style="display: inline-block">
+                            <input id="labels3" onblur="labelOnb3()" type="hidden" />
+                            <div class="labelsModel3">
+                                <div id="labelsModel3-div"></div>
+                                <a id="labelsModel3-a" onclick="label3Off()"><i class="fa fa-times"></i></a>
+                            </div>
+                        </div>
+                        <a id="labels" href="javascript:void(0)" onclick="labelClick()">添加标签...</a>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-2" style="text-align: right;text-align: end">
+                        <span style="display: inline-block;font-size: 20px">文章标题</span>
+                    </div>
+                    <div class="col-9">
+                        <input type="text" class="form-control" id="inputTitle" name="inputTitle" onblur="titleOnb()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-1" style="text-align: right">
+                        <span style="display: inline-block;font-size: 20px">博<br>客<br>区<br>域</span>
+                    </div>
+                    <div class="col-2">
+                        <div class="list-group" id="list-tab" role="tablist">
+                            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#skill" role="tab" aria-selected="true">技&emsp;术</a>
+                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#live" role="tab" aria-selected="false">生&emsp;活</a>
+                            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#photo" role="tab" aria-selected="false">相&emsp;册</a>
+                        </div>
+                    </div>
+                    <div class="col-7" style="border: 1px dashed #2B81AF">
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="skill" role="tabpanel">用于存放关于技术类的博客文章。</div>
+                            <div class="tab-pane fade" id="live" role="tabpanel">用于存放生活类的博客文章。</div>
+                            <div class="tab-pane fade" id="photo" role="tabpanel">用于分享日常、工作等的照片。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button id="btn1">获取html</button>
+
+        <!--富文本编辑器编辑内容-->
+        <div id="editor"></div>
+
+        <!--按钮组-->
+        <div id="buttonStyle" style="margin-top: 30px;text-align: right;margin-bottom: 30px">
+            <button id="submitBtn" class="btn btn-primary" style="width: 220px;height: 50px;margin-right: 100px;font-size: 18px">发&emsp;&emsp;布</button>
+            <button class="btn btn-danger" style="width: 220px;height: 50px;margin-right: 100px;font-size: 18px">取&emsp;&emsp;消</button>
+        </div>
+    </div>
+
+    <div th:replace="common/footer :: myFooter"></div>
+
+    <!--主页基础js-->
+    <script type="text/javascript" src="/lib/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap/Popper.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap/bootstrap.js"></script>
+    <script type="text/javascript" src="/lib/Bootbox/bootbox.js"></script>
+    <script type="text/javascript" src="/lib/messenger/messenger.min.js"></script>
+    <script type="text/javascript" src="/wangEditor/release/wangEditor.js"></script>
+
+    <script th:inline="javascript">
+        var users = [[${session.userLogin}]];
+    </script>
+
+    <script type="text/javascript">
+
+        var $label1 = $('#labels1');
+        var $label2 = $('#labels2');
+        var $label3 = $('#labels3');
+        var $labelModel = $('.labelsModel1');
+        var $labelMode2 = $('.labelsModel2');
+        var $labelMode3 = $('.labelsModel3');
+
+        /**
+         * 文章标签添加控制
+         */
+        function labelClick(){
+            let $label1Type = $label1.attr("type");
+            let $label2Type = $label2.attr("type");
+            let $label3Type = $label3.attr("type");
+            if ($label1Type == "hidden"){
+                if ($labelModel.is(":hidden")) {
+                    $label1.attr("type","text");
+                    $('#labels').hide();
+                    return;
+                }
+            };
+            if ($label2Type == "hidden"){
+                if ($labelMode2.is(":hidden")) {
+                    $label2.attr("type", "text");
+                    $('#labels').hide();
+                    return;
+                }
+            };
+            if ($label3Type == "hidden"){
+                if ($labelMode3.is(":hidden")) {
+                    $label3.attr("type", "text");
+                    $('#labels').hide();
+                    return;
+                }
+            };
+        }
+
+        /**
+         * 标签1失去焦点事件
+         */
+        function labelOnb1() {
+            let $labelValue = $label1.val();
+            let $labelModelValue = $('#labelsModel1-div');
+
+            if ($labelValue == null || $labelValue == "") {
+                return;
+            };
+            $label1.attr("type","hidden");
+            $labelModelValue.text($labelValue);
+            $labelModel.show();
+            $('#labels').show();
+        };
+        function label1Off() {
+            let $labelModelValue = $('#labelsModel1-div');
+            $labelModel.hide();
+            $label1.attr("type","hidden");
+            $label1.val("");
+            $labelModelValue.text("");
+            $('#labels').show();
+        };
+
+        /**
+         * 标签2失去焦点事件
+         */
+        function labelOnb2() {
+            let $labelValue = $label2.val();
+            let $labelModelValue = $('#labelsModel2-div');
+
+            if ($labelValue == null || $labelValue == "") {
+                return;
+            };
+            if ($labelValue.trim().replace(/\s/g,"") == $label1.val().trim().replace(/\s/g,"")){
+                label2Off();
+                return;
+            }
+
+            $label2.attr("type","hidden");
+            $labelModelValue.text($labelValue);
+            $labelMode2.show();
+            $('#labels').show();
+        };
+        function label2Off() {
+            let $labelModelValue = $('#labelsModel2-div');
+            $labelMode2.hide();
+            $label2.attr("type","hidden");
+            $label2.val("");
+            $labelModelValue.text("");
+            $('#labels').show();
+        };
+
+        /**
+         * 标签3失去焦点事件
+         */
+        function labelOnb3() {
+            let $labelValue = $label3.val();
+            let $labelModelValue = $('#labelsModel3-div');
+
+            if ($labelValue == null || $labelValue == "") {
+                return;
+            };
+            if ($labelValue.trim().replace(/\s/g,"") == $label1.val().trim().replace(/\s/g,"")){
+                label3Off();
+                return;
+            }
+            if ($labelValue.trim().replace(/\s/g,"") == $label2.val().trim().replace(/\s/g,"")){
+                label3Off();
+                return;
+            }
+
+            $label3.attr("type","hidden");
+            $labelModelValue.text($labelValue);
+            $labelMode3.show();
+        };
+        function label3Off() {
+            let $labelModelValue = $('#labelsModel3-div');
+            $labelMode3.hide();
+            $label3.attr("type","hidden");
+            $label3.val("");
+            $labelModelValue.text("");
+            $('#labels').show();
+        };
+
+        /**
+         * 标签数据获取方法
+         */
+        function labelValue() {
+            let labelData = new Array();
+
+            let $label1Value = $label1.val();
+            let $label2Value = $label2.val();
+            let $label3Value = $label3.val();
+
+            let $labelModel1Value = $('#labelsModel1-div').text();
+            let $labelModel2Value = $('#labelsModel2-div').text();
+            let $labelModel3Value = $('#labelsModel3-div').text();
+            
+            if (!($label1Value == "" || $labelModel1Value == "")) {
+                labelData.push($label1Value);
+            }
+            if (!($label2Value == "" || $labelModel2Value == "")) {
+                labelData.push($label2Value);
+            }
+            if (!($label3Value == "" || $labelModel3Value == "")) {
+                labelData.push($label3Value);
+            }
+
+            console.log(labelData)
+
+            return labelData;
+        }
+
+        /**
+         * 文章标题非空判断方法
+         */
+        function titleNotNull(title){
+            if (title == "" || title == null){
+                return true;
+            }
+            return false;
+        }
+
+        /**
+         * 文章标题失去焦点的判断
+         * @param result
+         */
+        function titleOnb() {
+            var opinion;
+            var title = $('#inputTitle').val();
+
+            if (titleNotNull(title)){
+                opinion = 0;
+            }else{
+                $.ajax({
+                    url: "/titleMethod",
+                    data: {
+                        title: title
+                    },
+                    async: false,
+                    success: function (result) {
+                        if (result == "success1"){
+                            opinion = 1;
+                        }
+                        if (result == "success2"){
+                            opinion = 2;
+                        }
+                    },
+                    error: function () {
+                        opinion = 2;
+                    }
+                })
+            };
+            switch (opinion) {
+                case 0:
+                    $.globalMessenger().post({
+                        title: '提示',
+                        message: '文章标题不能为空！',
+                        showCloseButton: true,
+                        id: 1,
+                        type: 'error'
+                    });
+                    break;
+                case 1:
+                    $.globalMessenger().post({
+                        title: '提示',
+                        message: '文章标题已存在！',
+                        showCloseButton: true,
+                        id: 1,
+                        type: 'error'
+                    });
+                    break;
+                default:
+                    $.globalMessenger().post({
+                        title: '提示',
+                        message: '文章标题可以创建！',
+                        showCloseButton: true,
+                        id: 1,
+                        type: 'info'
+                    });
+            }
+        };
+
+        /**
+         * 文章区域获取的方法
+         * @param 选择的文章区域的值
+         */
+        function regionValue() {
+            let regionValue;
+            // 文章区域节点获取
+            let $skill = $('#list-home-list');
+            let $life = $('#list-profile-list');
+            let $photo = $('#list-messages-list');
+            // 文章区域的判断
+            let skillYN = $skill.attr("aria-selected");
+            let lifeYN = $life.attr("aria-selected");
+            let photoYN = $photo.attr("aria-selected");
+            // 文章区域的值
+            let skillValue = $skill.text().trim().replace(/\s/g,"");
+            let lifeValue = $life.text().trim().replace(/\s/g,"");
+            let photoValue = $photo.text().trim().replace(/\s/g,"");
+
+            if (skillYN){
+                regionValue = skillValue;
+                return regionValue;
+            };
+            if (lifeYN){
+                regionValue = lifeValue;
+                return regionValue;
+            };
+            if (photoYN){
+                regionValue = photoValue;
+                return regionValue;
+            };
+        };
+
+        /**
+         * 编辑器非空判断方法
+         */
+        function compileNotNull(htmlContent) {
+            if (htmlContent == "" || htmlContent == null){
+                return true;
+            }
+            return false;
+        }
+
+        /**
+         * 提交文章的方法
+         */
+        function submitblog(title,htmlContent,district,label) {
+            $.ajax({
+                url: "/writeFile",
+                data: {
+                    title: title,
+                    htmlContent: htmlContent,
+                    district: district,
+                    label: label
+                },
+                success: function (result) {
+                    console.log(result)
+                    if (result == "succeed") {
+                        $.globalMessenger().post({
+                            title: '提示',
+                            message: '发布成功！',
+                            showCloseButton: true,
+                            id: 2,
+                            type: 'info'
+                        });
+                    }else {
+                        $.globalMessenger().post({
+                            title: '提示',
+                            message: '发布失败！',
+                            showCloseButton: true,
+                            id: 2,
+                            type: 'error'
+                        });
+                    };
+                },
+                error: function () {
+                    $.globalMessenger().post({
+                        title: '提示',
+                        message: '服务端出现未知错误，请联系管理员！',
+                        showCloseButton: true,
+                        id: 2,
+                        type: 'error'
+                    });
+                }
+            })
+        };
+
+
+        $(function() {
+
+            // 网页初始化，默认选中文章标题
+            $('#inputTitle').focus();
+
+            // 初始化文章标签遮罩层的隐藏
+            $('.labelsModel1').hide();
+            $('.labelsModel2').hide();
+            $('.labelsModel3').hide();
+
+            // 初始化messager消息框设置（一种消息框的插件messager.js）
+            $._messengerDefaults = {
+                extraClasses: 'messenger-fixed messenger-theme-air messenger-on-top',
+                theme:'air'
+            };
+
+            // 让头部页面不再跟随移动
+            $("#head-message").css("position","static");
+
+            /******************************wangEditor.js富文本编辑器*********************************/
+            var E = window.wangEditor;
+            var editor = new E('#editor');
+            // 隐藏'网络图片'tab
+            editor.customConfig.showLinkImg = false;
+            // 上传图片时，可自定义filename
+            editor.customConfig.uploadFileName = 'myFile';
+            // 限制一次最多上传 1 张图片
+            editor.customConfig.uploadImgMaxLength = 1;
+            // 上传图片的Controller地址
+            editor.customConfig.uploadImgServer = '/uploadFile';
+
+            // 图片上传的监听函数，上传图片的不同阶段做相应处理
+            editor.customConfig.uploadImgHooks = {
+                before: function (xhr,editor,files) {
+                    // 图片上传之前触发
+                    // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，files 是选择的图片文件
+                    // 如果返回的结果是 {prevent: true, msg: 'xxxx'} 则表示用户放弃上传
+                    // return {
+                    //     prevent: true,
+                    //     msg: '放弃上传'
+                    // }
+                },
+                success: function (xhr, editor, result) {
+                    // 图片上传并返回结果，图片插入成功之后触发
+                    // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+                },
+                fail: function (xhr, editor, result) {
+                    // 图片上传并返回结果，但图片插入错误时触发
+                    // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+                },
+                error: function (xhr, editor) {
+                    // 图片上传出错时触发
+                    // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+                },
+                customInsert: function (insertImg, result, editor) {
+                    // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+                    // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+                    var url = result.url;
+                    insertImg(url);
+                }
+            }
+            editor.create();
+
+            // 打印文章内容html，用于测试
+            document.getElementById('btn1').addEventListener('click', function () {
+                // 读取 html
+                alert(editor.txt.html());
+            }, false);
+            /******************************wangEditor.js富文本编辑器*********************************/
+
+            /**
+             * 提交文章的点击事件
+             */
+            $("#submitBtn").click(function () {
+                var title = $("#inputTitle").val();
+                var content = editor.txt.text();
+                var htmlContent = editor.txt.html();
+                var labelString = labelValue().toString();
+                var district = regionValue();
+
+                var number = 1;
+
+                // 文章标题的非空和重复判断
+                if (titleNotNull(title)) {
+                    number = number + 1;
+                    $.globalMessenger().post({
+                        title: '提示',
+                        message: '文章标题不能为空！',
+                        showCloseButton: true,
+                        type: 'error'
+                    });
+                }else{
+                    $.ajax({
+                        url: "/titleMethod",
+                        data: {
+                            title: title
+                        },
+                        async: false,
+                        success: function (result) {
+                            if (result == "success1"){
+                                number = number + 1;
+                                $.globalMessenger().post({
+                                    title: '提示',
+                                    message: '文章标题已存在！',
+                                    showCloseButton: true,
+                                    type: 'error'
+                                });
+                            }
+                        }
+                    })
+                };
+
+                // 文章内容的非空判断
+                if (compileNotNull(content)){
+                    number = number + 1;
+                    $.globalMessenger().post({
+                        title: '提示',
+                        message: '文章内容不能为空！',
+                        showCloseButton: true,
+                        type: 'error'
+                    });
+                };
+
+                // 这么return是为了能够将文章标题和文章内容错误的提示展示出来
+                if (number > 1){
+                    return;
+                };
+
+                var dialog = bootbox.dialog({
+                    title: '发布提示',
+                    message: '你确定发布这篇文章吗？',
+                    size: 'small',
+                    buttons:{
+                        确定:{
+                            className: 'btn-info',
+                            callback: function () {
+                                // 创建文章
+                                submitblog(title,htmlContent,district,labelString);
+                                // 无论是否成功创建文章，返回主页
+                                $.ajax({
+                                    url:"/",
+                                    data: {
+                                        act: users.act,
+                                        pwd: users.pwd
+                                    }
+                                })
+                            }
+                        },
+                        取消:{
+                            className: 'btn-danger'
+                        }
+                    }
+                });
+            });
+
+
+        });
+    </script>
+</body>
+</html>

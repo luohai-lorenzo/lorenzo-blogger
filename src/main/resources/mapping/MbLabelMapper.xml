@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luohai.myblogger.mapper.MbLabelMapper">
+
+    <resultMap id="MbLabelMap" type="com.luohai.myblogger.domain.MbLabel">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="LABEL_TEXT" property="labelText" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="MbDistrictMap" type="com.luohai.myblogger.domain.MbDistrict">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="article_district" property="articleDistrict" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectMbDistrictAll" resultMap="MbDistrictMap">
+      select * from mb_district
+    </select>
+
+    <select id="selectMbLabelAll" resultMap="MbLabelMap">
+      select * from mb_label
+    </select>
+
+    <insert id="insertLabelIsText">
+        insert into mb_label(LABEL_TEXT)
+        values
+        (#{labelText})
+    </insert>
+
+</mapper>

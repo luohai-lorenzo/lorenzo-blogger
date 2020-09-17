@@ -1,0 +1,9 @@
+#foot-message{
+    background-image: url("/image/主图.png");
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    background-size: 100% 1024px;
+    height: 155px;
+    color: rgb(192 192 192);
+    padding-top: 30px;
+}

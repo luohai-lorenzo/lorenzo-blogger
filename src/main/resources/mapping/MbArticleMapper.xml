@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luohai.myblogger.mapper.MbArticleMapper">
+
+    <resultMap id="MbArticleMap" type="com.luohai.myblogger.domain.MbArticle">
+        <id column="UUID" property="uuid" jdbcType="VARCHAR"/>
+        <result column="ESSAY_ADDRESS" property="essayAddress" jdbcType="VARCHAR"/>
+        <result column="TITLE" property="title" jdbcType="VARCHAR"/>
+        <result column="LABEL" property="label" jdbcType="INTEGER"/>
+        <result column="LOOK_NUMBER" property="lookNumber" jdbcType="INTEGER"/>
+        <result column="COMMENT_NUMBER" property="commentNumber" jdbcType="INTEGER"/>
+        <result column="DISTRICT" property="district" jdbcType="INTEGER"/>
+        <result column="POSTED_TIME" property="postedTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="insertArticle">
+        insert into mb_article(UUID,ESSAY_ADDRESS,POSTED_TIME,TITLE,DISTRICT,LABEL)
+        values
+        (#{uuid},#{essayAddress},now(),#{title},#{district},#{label})
+    </insert>
+
+    <select id="selectMbArticleByTitle" parameterType="java.lang.String" resultType="Integer">
+        select count(*) from mb_article where title = #{title}
+    </select>
+
+    <select id="selectPagingByNumber" parameterType="Integer" resultType="Integer">
+        select count(*) numberPages from mb_article
+    </select>
+
+    <select id="selectMbArticleByNumber" parameterType="Integer" resultMap="MbArticleMap">
+        select * from mb_article order by posted_time desc limit #{numberPage},7
+    </select>
+
+    <select id="selectArticleOnUUID" parameterType="java.lang.String" resultType="java.lang.String">
+        select ESSAY_ADDRESS from mb_article where UUID = #{articleUUID}
+    </select>
+
+</mapper>

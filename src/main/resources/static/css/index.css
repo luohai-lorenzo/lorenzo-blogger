@@ -1,0 +1,216 @@
+    body{
+        margin: 0;
+        background-color: rgba(240,240,240,0.99);
+        position: relative;
+    }
+
+    /*--------------------------------------------------------------------------*/
+    /*------------------------中间内容区域css开始--------------------------------*/
+    /*中间内容区域css*/
+    #body-message{
+        padding: 0;
+        height: 1805px;
+        margin-top: 110px;
+        margin-bottom: 40px;
+    }
+    /*模块颜色设置css*/
+    #body-message-slideshow,#body-message-my,#body-message-text,
+    #body-message-notice,#body-message-new-text,#body-message-lable{
+        background-color: white;
+    }
+    /*================左区域开始===========================*/
+    #body-message-left{
+        float: left;
+    }
+    /*---轮播图css开始---*/
+    #body-message-slideshow{
+        height: 400px;
+        width: 780px;
+        margin-bottom: 30px;
+    }
+    img{
+        height: 400px;
+        width: 780px;
+    }
+    /*---轮播图css结束---*/
+    /*---博客最新动态css开始---*/
+    #body-message-text{
+        /*border: 1px solid black;*/
+        height: 1370px;
+        width: 780px;
+    }
+    #message-text-card{
+        border: 0px;
+    }
+    #message-text-card-header-1{
+        font-family: '黑体';
+        font-size: 20px;
+    }
+    /*---博客最新动态css结束---*/
+    /*==============左区域结束===========================*/
+
+    /*==============右区域开始===========================*/
+    #body-message-right{
+        height: 330px;
+        float: right;
+    }
+    /*---个人信息css开始---*/
+    #body-message-my{
+        height: 580px;
+        width: 330px;
+        margin-bottom: 30px;
+        font-family: '宋体';
+        background-image: url("/image/个人信息背景图.jpg");
+        color: white;
+    }
+    #body-message-my-1{
+        font-size: 35px;
+        font-weight: bold;
+        display: block;
+        margin-left: 5px;
+    }
+    #body-message-my-img{
+        height: 100px;
+        width: 100px;
+        /*border: 1px solid red;*/
+        margin-left: 115px;
+    }
+    #body-message-my-2{
+        height: 100px;
+        width: 100%;
+        font-family: '楷体';
+        font-size: 30px;
+        margin-top: 10px;
+        padding-left: 20px;
+        padding-top: 25px;
+        background-color: rgba(44,118,135,0.5);
+    }
+    #body-message-my-text{
+        width: 308px;
+        margin-left: 15px;
+        position: absolute;
+    }
+    .body-message-my-text-1{
+        display: block;
+        font-size: 21px;
+    }
+    .body-message-my-text-2{
+        font-weight: normal;
+        font-size: 15px;
+    }
+    .body-message-my-text-3{
+        font-weight: normal;
+        font-size: 17px;
+    }
+    #body-message-my-bottom{
+        margin-top: 20px;
+        padding-left: 60px;
+    }
+    #body-message-my-bottom-1{
+        color: rgb(0 159 80);
+    }
+    #body-message-my-bottom-2{
+        color: rgb(54 99 182);
+    }
+    #weixin{
+        text-decoration:none;
+        display: inline-block;
+        height: 40px;width: 40px
+    }
+    #qqq{
+        display: inline-block;
+        margin-left: 90px;
+        height: 40px;
+        width: 40px
+    }
+    #weixinImg{
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 160px;
+        left: 25px;
+        z-index: 2
+    }
+    #qqqImg{
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 160px;
+        left: 165px;
+        z-index: 2
+    }
+    /*---个人信息css结束---*/
+
+    /*---网站公告css开始---*/
+    #body-message-notice{
+        height: 330px;
+        width: 330px;
+        margin-bottom: 30px;
+    }
+    #notice-card{
+        border: 0px;
+    }
+    #notice-card-header{
+    }
+    #notice-card-header-1{
+        font-family: '黑体';
+        font-size: 20px;
+    }
+    #notice-card-header-2{
+        display: inline-block;
+        float: right;
+        margin-top: 5px;
+        font-size: 15px;
+    }
+    #notice-card-body{
+        border-bottom: 1px solid #00aaaa;
+        padding-bottom: 0px;
+        font-family: 楷体;
+        font-size: 20px;
+    }
+    #notice-footer{
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    /*---网站公告css结束---*/
+
+    /*---最新文章模块css开始---*/
+    #body-message-new-text{
+        /*border: 1px solid black;*/
+        height: 400px;
+        width: 330px;
+        margin-bottom: 30px;
+    }
+    #message-new-card{
+        border: 0px;
+    }
+    #message-new-card-header-1{
+        font-family: '黑体';
+        font-size: 20px;
+    }
+    /*---最新文章模块css结束---*/
+
+    /*---标签模块css开始---*/
+    #body-message-lable{
+        /*border: 1px solid black;*/
+        height: 400px;
+        width: 330px;
+    }
+    #lable-card{
+        border: 0px;
+    }
+    #lable-card-header-1{
+        font-family: '黑体';
+        font-size: 20px;
+    }
+    /*---标签模块css结束---*/
+    /*================右区域结束===========================*/
+    /*----------------------------中间内容区域css结束------------------------------*/
+    /*----------------------------------------------------------------------------*/
+
+
+
+
+
+

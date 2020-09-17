@@ -1,0 +1,85 @@
+#head-message{
+    background-image: url("/image/主图.png");
+    background-repeat: no-repeat;
+    background-size: 100% 1024px;
+    height: 80px;
+    padding-top: 10px;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+#head-message-title{
+    font-family: '华文楷体';
+    font-weight: bold;
+    font-size: 35px;
+    color: rgba(225,225,225,0.99);
+}
+
+#head-message-titles{
+    font-family: '华文楷体';
+    font-size: 25px;
+    color: rgba(233,233,233,0.99);
+    margin-left: 10px;
+}
+
+/*这里是所有a标签的css设置，应该有办法写在一起，但是暂时没想到，所以先这么写吧*/
+#head-message-home-a,#head-message-life-a,#head-message-skill-a,
+#head-message-chrome-a,#login-1,#login-2{
+    text-decoration: none;
+}
+#head-message-home-a :hover{
+    color: rgba(193,168,66,0.99);
+}
+#head-message-life-a :hover{
+    color: rgba(193,168,66,0.99);
+}
+#head-message-skill-a :hover{
+    color: rgba(193,168,66,0.99);
+}
+#head-message-chrome-a :hover{
+    color: rgba(193,168,66,0.99);
+}
+#login-1 :hover{
+    color: rgba(193,168,66,0.99);
+}
+#login-2 :hover{
+    color: rgba(193,168,66,0.99);
+}
+
+#head-message-home,#head-message-chrome,#head-message-life,
+#head-message-skill,#head-message-login{
+    padding: 0;
+    padding-top: 15px;
+}
+
+/*上部分除标题外的字体设置*/
+#head-message-homes,#head-message-chromes,#head-message-lifes,
+#head-message-skills,#head-message-logins,#head-message-register,
+#head-message-span{
+    font-family: '宋体';
+    font-size: 20px;
+    color: rgba(233,233,233,0.99);
+}
+
+#model-account,#model-password{
+    font-family: '黑体';
+    font-size: 20px;
+}
+
+.login-text{
+    font-size: 23px;
+    font-family: '楷体';
+    color: rgba(193,168,66,0.99);
+}
+
+#btn-text{
+    height: 30px;
+    width: 50px;
+    padding: 0;
+    font-size: 15px;
+    font-family: '宋体';
+    font-weight: bold;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}

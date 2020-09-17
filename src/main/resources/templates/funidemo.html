@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统维护</title>
+</head>
+<body style="background-color: #1e88e5">
+
+    <div style="width:700px;height:150px;color: white;margin: 300px auto 0 auto;">
+        <div style="margin-bottom: 30px">
+            <span style="font-size: 50px;font-family: 幼圆;">系统维护......</span>
+            <span style="display: block;font-size: 30px">SYSTEM MAINTENANCE</span>
+        </div>
+        <div>
+            <span style="font-size: 20px;font-weight: lighter">智慧房管平台正在进行系统升级，以及数据安全维护，维护期间系统暂停服务，敬请谅解！</span>
+            <div style="text-align: right;margin-top: 20px">
+                <span>维护时间：</span><span id="spandate"></span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+
+        var span = document.getElementById("spandate");
+
+        var now = new Date();
+
+        var year = now.getFullYear();//年
+        var month = now.getMonth() + 1;//月  (注意：月份+1)
+        var date = now.getDate();//日
+
+        if (month < 10) {
+            month = "0" + month;
+        }
+        if (date < 10) {
+            date = "0" + date;
+        }
+
+        span.innerText = year + "-" + month + "-" + date;
+
+    </script>
+
+
+</body>
+</html>

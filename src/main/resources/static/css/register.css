@@ -1,0 +1,16 @@
+body{
+    background-image: url("/image/主图.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100ch;
+    padding-top: 100px;
+}
+label{
+    text-align: right;
+    color: white;
+}
+small{
+    color: mistyrose;
+}
+i{
+    color: red;
+}

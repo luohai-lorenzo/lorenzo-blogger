@@ -1,0 +1,111 @@
+body{
+    background-image: url("/image/主图.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100ch;
+}
+
+#borders{
+    margin: 110px auto 0 auto;
+    padding: 3px;
+    height: 470px;
+    width: 450px;
+    /*border: 1px solid white;*/
+}
+
+#borderss{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    /*border: 1px solid white;*/
+}
+
+i{
+    position: absolute;
+}
+
+#account-fa{
+    color: white;
+    left: 80px;
+    top: 142px;
+}
+
+#password-fa{
+    color: white;
+    left: 82px;
+    top: 211px;
+    font-size: 20px;
+}
+
+input{
+    background-color: rgba(255,255,255,0.2);
+    border: 1px solid transparent;
+    height: 40px;
+    width: 300px;
+    padding:8px 5px 5px 40px;
+    font-size: 15px;
+    font-family: 黑体;
+    color: #7F0055;
+}
+
+a{
+    color: rgba(255,255,255,0.6);
+    font-family: 宋体;
+}
+
+a:hover{
+    color: #7F0055;
+    text-decoration: none;
+}
+
+#login-logo{
+    height: 100px;
+    width: 100%;
+    background-image: url("/image/welcome.png");
+    background-repeat: no-repeat;
+    background-position-x: 70px;
+}
+
+strong{
+    display: inline-block;
+    margin: 40px 0 0 105px;
+    color: white;
+    font-size: 30px;
+}
+
+#account{
+    margin: 30px 0 0 65px;
+}
+#password{
+    margin: 30px 0 40px 65px;
+}
+
+input:focus{
+    outline: thin solid #7F0055;
+    outline-offset: -0.2px;
+}
+
+#buttons{
+    display: block;
+    width: 300px;
+    margin-left: 65px;
+}
+
+#a-1{
+    display: inline-block;
+    margin: 30px 0 0 65px;
+}
+
+#a-2{
+    display: inline-block;
+    margin: 30px 0 0 160px;
+}
+
+#a-3{
+    display: inline-block;
+    margin: 10px 0 0 65px;
+}
+
+#a-4{
+    display: inline-block;
+    margin: 10px 0 0 160px;
+}

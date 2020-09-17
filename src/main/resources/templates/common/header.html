@@ -1,0 +1,69 @@
+<!--网站头部页面-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="myHeader">
+    <div class="header">
+
+        <!--主页头部栏-->
+        <div class="container-fluid" id="head-message">
+            <div class="row">
+                <!--主页头部标题-->
+                <div class="col-2 ml-4">
+                    <span id="head-message-title">栀子</span>
+                    <span id="head-message-titles">个人博客</span>
+                </div>
+
+                <!--主页头部选项-->
+                <div class="col-1 offset-1" id="head-message-home">
+                    <a id="head-message-home-a" href="/">
+                        <span id="head-message-homes">
+                            <i class="fa fa-flag fa-1x"></i> 主&nbsp页
+                        </span>
+                    </a>
+                </div>
+                <div class="col-1" id="head-message-skill">
+                    <a id="head-message-skill-a" href="#">
+                        <span id="head-message-skills">
+                            <i class="fa fa-asl-interpreting fa-1x"></i> 技&nbsp术
+                        </span>
+                    </a>
+                </div>
+                <div class="col-1" id="head-message-life">
+                    <a id="head-message-life-a" href="#">
+                        <span id="head-message-lifes">
+                            <i class="fa fa-cutlery fa-1x" id="head-message-font-life"></i> 生&nbsp活
+                        </span>
+                    </a>
+                </div>
+                <div class="col-1" id="head-message-chrome">
+                    <a id="head-message-chrome-a" href="#">
+                        <span id="head-message-chromes">
+                            <i class="fa fa-chrome fa-1x"></i> 相&nbsp册
+                        </span>
+                    </a>
+                </div>
+
+                <!--主页头部登录选项-->
+                <div class="col-3 offset-1" id="head-message-login">
+                    <div th:if="${session.userLogin} eq null">
+                        <a id="login-1" href="/goLogin">
+                            <span id="head-message-logins">登&nbsp录 </span>
+                        </a>
+                        <span id="head-message-span">/ </span>
+                        <a id="login-2" href="/goRegister" target="_blank">
+                            <span id="head-message-register">注&nbsp册</span>
+                        </a>
+                    </div>
+                    <div th:if="${session.userLogin} ne null">
+                        <span style="color: whitesmoke;font-family: '宋体';font-size: 20px;">用户：</span>
+                        <span class="login-text">
+                            <span th:text="${session.userLogin.getNickName()}"></span>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
